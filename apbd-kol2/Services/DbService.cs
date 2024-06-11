@@ -121,7 +121,7 @@ public class DbService : IDbService
         return false;
     }
 
-    public async Task<ICollection<backpack>> AddItemsToCharacter(int characterId, NewItemsDto items)
+    public async Task AddItemsToCharacter(int characterId, NewItemsDto items)
     {
         var character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == characterId);
         var characterBackpack = await _context.Backpacks.FirstOrDefaultAsync(b => b.CharacterId == characterId);
@@ -148,14 +148,16 @@ public class DbService : IDbService
             //     ItemId = backpack.ItemId,
             //     CharacterId = backpack.CharacterId
             // });
-
-      
         }
-        return addedItems;
+        
+        character.CurrentWeight += await GetItemsTotalWeight(itemList);
+        await _context.SaveChangesAsync();
+
+        // return addedItems;
     }
 
-    public async Task UpdateCharacterCurrentWeight(int characterId, int newWeight)
-    {
-        throw new NotImplementedException();
-    }
+    // public async Task UpdateCharacterCurrentWeight(int characterId, int newWeight)
+    // {
+    //     throw new NotImplementedException();
+    // }
 }

@@ -49,10 +49,13 @@ public class Controller : ControllerBase
         {
             return BadRequest("Character does not have enough capacity.");
         }
-
-
+        
+        // add items to character and update his current weight
         var addItemsToCharacter = _service.AddItemsToCharacter(characterId, items);
-        return Ok(addItemsToCharacter);
+        
+        
+        // return Ok(addItemsToCharacter);
+        return Ok("items added");
     }
 
     

@@ -13,6 +13,7 @@ public interface IDbService
     Task<bool> DoesItemExist(int itemId);
     Task<int> GetItemsTotalWeight(ICollection<int> itemIds);
     Task<bool> DoesCharacterHaveCapacity(int characterId, int addedWeight);
-    Task<ICollection<backpack>> AddItemsToCharacter(int characterId, NewItemsDto items);
-    Task UpdateCharacterCurrentWeight(int characterId, int newWeight);
+    // Task<ICollection<backpack>> AddItemsToCharacter(int characterId, NewItemsDto items);
+    Task AddItemsToCharacter(int characterId, NewItemsDto items);
+    // Task UpdateCharacterCurrentWeight(int characterId, int newWeight);
 }
